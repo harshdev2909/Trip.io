@@ -1,9 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-textarea{
-  height: 140px;
-}
+
 
 button.primary{
   background-color: #0065ff;
