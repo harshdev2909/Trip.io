@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -9,8 +10,8 @@ const Hero = () => {
             Personalized Itineraries at Your FIngertips
         </h1>
         <p className='text-xl text-grey-500 text-center'>Your personal trip planner and travel curtor , creating custom itinearies tailored to youe interests and budget.</p>
-
-        <Button>Get Started</Button>
+        <Link to={'/create-trip'}><Button>Get Started</Button></Link>
+        
     </div>
   )
 }
