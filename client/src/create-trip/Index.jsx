@@ -25,7 +25,7 @@ const Index = () => {
             <div>
                 <h2 className='text-xl my-3 font-medium'>What is destination of choice?</h2>
                 <GooglePlacesAutocomplete
-                apiKey=''
+                apiKey='AIzaSyCyNPGCa7svWqGkeTUbOjazEFy1AaTb8z4'
                 selectProps={{
                     place,
                     onChange:(v)=>{setPlace(v); handleInputChange('location',v)}
