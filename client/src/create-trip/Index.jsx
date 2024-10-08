@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { SelectBudgetOptios, SelectTravelesList } from '@/constants/Options';
-import React, { useEffect, useState } from 'react'
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+import React, { useEffect, useState } from 'react';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const Index = () => {
     const[place,setPlace] =useState();
