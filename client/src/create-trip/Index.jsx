@@ -10,7 +10,7 @@ const Index = () => {
     const[formData,setFormData] = useState([]);
     const handleInputChange =(name,value)=>{
        setFormData({
-        ...formField,
+        ...formData,
         [name]:value
        })
     }
@@ -28,7 +28,9 @@ const Index = () => {
                 apiKey='AIzaSyCyNPGCa7svWqGkeTUbOjazEFy1AaTb8z4'
                 selectProps={{
                     place,
-                    onChange:(v)=>{setPlace(v); handleInputChange('location',v)}
+                    onChange:(v)=>{setPlace(v);
+                        // console.log(v)
+                    handleInputChange('location',v)}
                 }}
                 />
             </div>
