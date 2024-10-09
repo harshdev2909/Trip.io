@@ -41,4 +41,4 @@ export const SelectBudgetOptios=[
         desc:'Not worry about Money',
         icon:"💸",
     }
-]
+];
