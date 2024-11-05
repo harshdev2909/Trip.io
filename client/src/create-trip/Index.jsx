@@ -36,14 +36,16 @@ const Index = () => {
             </div>
             <div>
             <h2 className='text-xl my-3 font-medium'>How many days are you planning your trip</h2>
-                <Input placeholder={'Ex.3'} type='number' />
+                <input onChange={(e)=>handleInputChange('noOfDays',e.target.value)} placeholder={'Ex.3'} type='number'  />
             </div>
         </div>
         <div>
         <h2 className='text-xl my-3 font-medium'>What is your Budegt?</h2>
         <div className='grid grid-cols-3 gap-5 mt-5'>
             {SelectBudgetOptios.map((ele,index)=>(
-                <div key={index} className='p-4 rounded-lg hover:shadow-lg cursor-pointer shadow-lg'>
+                <div onClick={()=>handleInputChange('budget',ele.title)} key={index} className={`p-4 rounded-lg hover:shadow-lg cursor-pointer
+                ${formData?.budget==ele.title&&' shadow-lg border-black'}
+                `}>
                     <h2 className='text-4xl'>{ele.icon}</h2>
                     <h2 className='font-bold text-lg'>{ele.title}</h2>
                     <h2 className='text-sm text-grey-500'>{ele.desc}</h2>
@@ -54,7 +56,10 @@ const Index = () => {
         <h2 className='text-xl my-3 font-medium'>Who do you plan on traveling with on your next adventure?</h2>
         <div className='grid grid-cols-3 gap-5 mt-5'>
             {SelectTravelesList.map((ele,index)=>(
-                <div key={index} className='p-4 rounded-lg hover:shadow-lg cursor-pointer shadow-lg'>
+                <div onClick={()=>handleInputChange('people',ele.peole)} key={index}  className={`p-4 rounded-lg hover:shadow-lg cursor-pointer 
+                ${formData?.people==ele.peole&&' shadow-lg border-black'}
+                `}>
+                    
                     <h2 className='text-4xl'>{ele.icon}</h2>
                     <h2 className='font-bold text-lg'>{ele.title}</h2>
                     <h2 className='text-sm text-grey-500'>{ele.desc}</h2>
