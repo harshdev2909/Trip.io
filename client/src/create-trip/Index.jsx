@@ -5,10 +5,16 @@ import { chatSession } from '@/service/AiModel';
 import React, { useEffect, useState } from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { toast } from 'sonner';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+} from "@/components/ui/dialog"
 
 const Index = () => {
     const [place, setPlace] = useState();
-
+    const [open, setOpen] = useState(false)
     const [formData, setFormData] = useState([]);
     const handleInputChange = (name, value) => {
         setFormData({
@@ -20,25 +26,30 @@ const Index = () => {
         console.log(formData)
     }, [formData])
 
-    const OnGenerateTrip = async() =>{
-        if(formData?.noOfDays>5&&formData?.location || ! formData?.budget || !formData?.people)
-     {
-        toast("Please fill all details.")
+    const OnGenerateTrip = async () => {
 
-      return ;
-     } 
-     const FINAL_PROMPT = AI_PROMPT
-     .replace('{location}',formData?.location?.label)
-     .replace('{totalDays}' ,formData?.noOfDays)
-     .replace('{traveler}',formData?.people)
-     .replace('{budget}',formData.budget)
-     .replace('{totalDays}' ,formData?.noOfDays)
+        const user = localStorage.getItem('user')
+        if (!user) {
+            setOpen(true);
+            return;
+        }
+        if (formData?.noOfDays > 5 && formData?.location || !formData?.budget || !formData?.people) {
+            toast("Please fill all details.")
 
-    //  console.log(FINAL_PROMPT)
+            return;
+        }
+        const FINAL_PROMPT = AI_PROMPT
+            .replace('{location}', formData?.location?.label)
+            .replace('{totalDays}', formData?.noOfDays)
+            .replace('{traveler}', formData?.people)
+            .replace('{budget}', formData.budget)
+            .replace('{totalDays}', formData?.noOfDays)
 
-     const result = await chatSession.sendMessage(FINAL_PROMPT)
+        //  console.log(FINAL_PROMPT)
 
-     console.log(result?.response?.text())
+        const result = await chatSession.sendMessage(FINAL_PROMPT)
+
+        console.log(result?.response?.text())
     }
     return (
         <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
@@ -96,6 +107,18 @@ const Index = () => {
             <div className='my-10 justify-end flex'>
                 <Button onClick={OnGenerateTrip} >Generate Trip</Button>
             </div>
+            <Dialog open={open}>
+                <DialogContent>
+                    <DialogHeader>
+                        
+                        <DialogDescription>
+                            This action cannot be undone. This will permanently delete your account
+                            and remove your data from our servers.
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
+
         </div>
     )
 }
